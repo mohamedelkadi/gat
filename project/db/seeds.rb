@@ -81,3 +81,12 @@ PanelProvider.all.ids.cycle do |provider_id|
 end
 
 root_target_groups.each { |trgt| create_tree(trgt, 3) }
+
+# create some records for many to many relation between location and location group
+location_groups = LocationGroup.all.to_a
+
+Location.find_in_batches(batch_size: 5) do |batch|
+  location_group = location_groups.pop
+  location_group.locations << batch
+  location_group.save!
+end
