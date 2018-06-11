@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_21_132124) do
+ActiveRecord::Schema.define(version: 2018_06_09_194203) do
 
   create_table "countries", force: :cascade do |t|
     t.string "code", null: false
@@ -19,6 +19,21 @@ ActiveRecord::Schema.define(version: 2018_05_21_132124) do
     t.datetime "updated_at", null: false
     t.index ["code"], name: "index_countries_on_code", unique: true
     t.index ["panel_provider_id"], name: "index_countries_on_panel_provider_id"
+  end
+
+  create_table "countries_target_groups", force: :cascade do |t|
+    t.integer "country_id"
+    t.integer "target_group_id"
+  end
+
+  create_table "location_groups", force: :cascade do |t|
+    t.string "name"
+    t.integer "country_id"
+    t.integer "panel_provider_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["country_id"], name: "index_location_groups_on_country_id"
+    t.index ["panel_provider_id"], name: "index_location_groups_on_panel_provider_id"
   end
 
   create_table "locations", force: :cascade do |t|
@@ -30,11 +45,27 @@ ActiveRecord::Schema.define(version: 2018_05_21_132124) do
     t.index ["external_id"], name: "index_locations_on_external_id", unique: true
   end
 
+  create_table "location_groups_locations", force: :cascade do |t|
+    t.integer "location_id"
+    t.integer "location_group_id"
+  end
+
   create_table "panel_providers", force: :cascade do |t|
     t.string "code", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["code"], name: "index_panel_providers_on_code", unique: true
+  end
+
+  create_table "target_groups", force: :cascade do |t|
+    t.string "name"
+    t.string "external_id"
+    t.integer "parent_id"
+    t.string "secret_code"
+    t.integer "panel_provider_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["panel_provider_id"], name: "index_target_groups_on_panel_provider_id"
   end
 
 end
