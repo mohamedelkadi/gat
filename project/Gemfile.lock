@@ -237,6 +237,7 @@ DEPENDENCIES
   faker (~> 1.8.7)
   jbuilder (~> 2.5)
   listen (>= 3.0.5, < 3.2)
+  nokogiri (~> 1.8.2)
   puma (~> 3.11)
   rails (~> 5.2.0)
   rspec-rails (~> 3.7)
