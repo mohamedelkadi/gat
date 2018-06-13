@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_09_194203) do
+ActiveRecord::Schema.define(version: 2018_06_13_012706) do
 
   create_table "countries", force: :cascade do |t|
     t.string "code", null: false
@@ -36,6 +36,11 @@ ActiveRecord::Schema.define(version: 2018_06_09_194203) do
     t.index ["panel_provider_id"], name: "index_location_groups_on_panel_provider_id"
   end
 
+  create_table "location_groups_locations", force: :cascade do |t|
+    t.integer "location_id"
+    t.integer "location_group_id"
+  end
+
   create_table "locations", force: :cascade do |t|
     t.string "name", null: false
     t.string "external_id", null: false
@@ -43,11 +48,6 @@ ActiveRecord::Schema.define(version: 2018_06_09_194203) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["external_id"], name: "index_locations_on_external_id", unique: true
-  end
-
-  create_table "location_groups_locations", force: :cascade do |t|
-    t.integer "location_id"
-    t.integer "location_group_id"
   end
 
   create_table "panel_providers", force: :cascade do |t|
@@ -66,6 +66,17 @@ ActiveRecord::Schema.define(version: 2018_06_09_194203) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["panel_provider_id"], name: "index_target_groups_on_panel_provider_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.text "authentication_token"
+    t.datetime "authentication_token_created_at"
+    t.index ["authentication_token"], name: "index_users_on_authentication_token", unique: true
+    t.index ["email"], name: "index_users_on_email", unique: true
   end
 
 end

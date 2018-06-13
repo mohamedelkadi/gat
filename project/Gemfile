@@ -38,6 +38,9 @@ gem "bootsnap", ">= 1.1.0", require: false
 
 # nokogiri to parse html pages
 gem 'nokogiri', '~> 1.8.2'
+gem 'devise'
+# Devise token authentication
+gem 'devise-token_authenticatable'
 
 group :development, :test do
   # Call "byebug" anywhere in the code to stop execution and get a debugger console

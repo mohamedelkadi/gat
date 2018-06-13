@@ -9,5 +9,11 @@ Rails.application.routes.draw do
       end
     end
   end
+
+  resource :user, controller: 'user', only: [] do
+    post :sign_in
+    delete :sign_out
+    post :sign_up
+  end
   root controller: :pages, action: :root
 end
