@@ -30,4 +30,9 @@ class ApplicationController < ActionController::API
 
     render json: { message: 'Authentication failed' }, status: 401 unless @current_user
   end
+
+  # Rescues
+  rescue_from ActiveRecord::RecordNotFound do
+    render json: { message: 'Not found' }, status: 404
+  end
 end
