@@ -6,7 +6,7 @@ class PanelProvider::Pricing
   end
 
   def price
-    Rails.cache.fetch(strategy.name, expires_in: 2.minute) do
+    Rails.cache.fetch(pricing_strategy.name, expires_in: 2.minute) do
       pricing_strategy.new.calc
     end
   end

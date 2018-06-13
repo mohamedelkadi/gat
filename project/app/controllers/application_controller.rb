@@ -35,4 +35,8 @@ class ApplicationController < ActionController::API
   rescue_from ActiveRecord::RecordNotFound do
     render json: { message: 'Not found' }, status: 404
   end
+
+  rescue_from ActionController::ParameterMissing do |exp|
+    render json: { message: exp.message }, status: 422
+  end
 end

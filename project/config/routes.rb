@@ -16,6 +16,8 @@ Rails.application.routes.draw do
       resource :target_groups, only: [] do
         get '/:code', action: :country_provider_groups
       end
+
+      post 'evaluate_target' => 'pricing#evaluate_target'
     end
   end
 

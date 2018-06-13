@@ -40,12 +40,12 @@ class Target
 
   def eval
     panel_provider = Country.find_by_code(@country_code).panel_provider
-    unit_price = Pricing.new(panel_provider).price
+    unit_price = PanelProvider::Pricing.new(panel_provider).price
     # The target group id isn't used here and i think it should have a reason
     # to be in post body target groups look like categories based on functionality
     # so i think locations may have related to target group and the total size
     # will be the sum of panels that in location group and target group
-    total_size = @locations.reduce(0) { |sum, val| val[:size] + sum }
+    total_size = @locations.reduce(0) { |sum, val| val[:size].to_i + sum }
 
     unit_price * total_size
   end
