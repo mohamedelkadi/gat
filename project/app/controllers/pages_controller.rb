@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class PagesController < ApplicationController
   def root
-    render json: {status: 'OK'}
+    render json: { status: 'OK' }
   end
 end

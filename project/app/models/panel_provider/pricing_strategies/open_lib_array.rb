@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module PanelProvider::PricingStrategies
   class OpenLibArray
     URL = 'http://openlibrary.org/search.json?q=the+lord+of+the+rings'
@@ -16,7 +18,7 @@ module PanelProvider::PricingStrategies
       when Hash
         obj.values.each { |el| count += arrays_count(el) }
       when Array
-        count +=1 if obj.size > 10
+        count += 1 if obj.size > 10
         obj.each { |el| count += arrays_count(el) }
       end
 

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module PanelProvider::PricingStrategies
   class TimesHtml
     URL = 'http://time.com'

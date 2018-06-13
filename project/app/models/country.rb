@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Country < ApplicationRecord
   belongs_to :panel_provider
   has_many :location_groups
@@ -8,8 +10,8 @@ class Country < ApplicationRecord
 
   def current_provider_locations
     Location.includes(:location_groups).where(location_groups: {
-      country_id: id,
-      panel_provider_id: panel_provider_id,
-    })
+                                                country_id: id,
+                                                panel_provider_id: panel_provider_id
+                                              })
   end
 end

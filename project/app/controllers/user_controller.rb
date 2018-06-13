@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 class UserController < ApplicationController
   before_action :authenticate!, only: :sign_out
 
   def sign_in
     @user = User.find_by_email(user_params[:email])
 
-    unless @user && @user.valid_password?(user_params[:password])
+    unless @user&.valid_password?(user_params[:password])
       warden.custom_failure!
       return render json: { message: 'The email or password you entered is incorrect' }, status: 401
     end
@@ -21,7 +23,6 @@ class UserController < ApplicationController
     else
       render json: { erros: @user.errors.messages }, status: :unprocessable_entity
     end
-
   rescue ActiveRecord::RecordNotUnique
     render json: { error: 'user with this email already exist' }, status: :unprocessable_entity
   end

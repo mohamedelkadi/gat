@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class RemotePage
   def initialize(url)
     @url = url
@@ -12,7 +14,7 @@ class RemotePage
     when :html
       Nokogiri.HTML(result)
     else
-      fail ArgumentError, "Unsupported format #{format} "
+      raise ArgumentError, "Unsupported format #{format} "
     end
   end
 

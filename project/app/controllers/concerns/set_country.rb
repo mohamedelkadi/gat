@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module SetCountry
   extend ActiveSupport::Concern
   included do
@@ -7,6 +9,6 @@ module SetCountry
 
   def set_country
     code = params.fetch(:code).upcase
-    @country = Country.find_by!(code: code )
+    @country = Country.find_by!(code: code)
   end
 end

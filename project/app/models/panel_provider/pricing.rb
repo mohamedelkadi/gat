@@ -1,20 +1,18 @@
-class PanelProvider::Pricing
-  attr_reader :strategy
+# frozen_string_literal: true
 
+class PanelProvider::Pricing
   def initialize(panel_provider)
     @code = panel_provider.code
-    set_pricing_strategy
   end
 
   def price
     Rails.cache.fetch(strategy.name, expires_in: 2.minute) do
-      strategy.new.calc
+      pricing_strategy.new.calc
     end
   end
 
-
-  def set_pricing_strategy
-    @strategy ||=
+  def pricing_strategy
+    @pricing_strategy ||=
       case @code
       when 'times_a'
         PanelProvider::PricingStrategies::TimeA
