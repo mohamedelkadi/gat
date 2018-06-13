@@ -5,4 +5,11 @@ class Country < ApplicationRecord
 
   validates :code, presence: true, uniqueness: true
   validates :panel_provider, presence: true
+
+  def current_provider_locations
+    Location.includes(:location_groups).where(location_groups: {
+      country_id: id,
+      panel_provider_id: panel_provider_id,
+    })
+  end
 end
