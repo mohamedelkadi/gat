@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'GET  /v1/public/locations/:code' do
+describe 'GET  /v1/public/locations/:code', type: :request do
   let!(:provider1) { create :panel_provider, code: 'code1' }
   let!(:provider2) { create :panel_provider, code: 'code2' }
   # create two different countries

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'GET /v1/public/target_groups/:code' do
+describe 'GET /v1/public/target_groups/:code', type: :request do
   let!(:other_provider) { create :panel_provider, code: 'fake' }
   let!(:country) { create :country, code: 'US' }
   let!(:target_groups1) { create_list :target_group, 5, panel_provider: country.panel_provider }
