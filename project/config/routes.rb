@@ -8,6 +8,15 @@ Rails.application.routes.draw do
         get '/:code', action: :country_provider_groups
       end
     end
+
+    namespace :private do
+      resource :locations, only: [] do
+        get '/:code', action: :country_locations
+      end
+      resource :target_groups, only: [] do
+        get '/:code', action: :country_provider_groups
+      end
+    end
   end
 
   resource :user, controller: 'user', only: [] do
