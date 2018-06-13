@@ -29,24 +29,23 @@ you can create user by sign up with email and password then you will revecie tok
   1. GET  /v1/public/target_groups/:country_code
 
 # Tests 
+ **models**
 
-**models**
-  panel_provider
-    pricing_strategies
-      open_lib_array_spec.rb
-       time_a_spec.rb
-       times_html_spec.rb
-        target_spec.rb
+    open_lib_array_spec.rb
+    time_a_spec.rb
+    times_html_spec.rb
+    target_spec.rb
+
 **requests**
-  private
+
     evaluate_target_spec.rb
-  public
     locations_spec.rb
     target_groups_spec.rb
-`
+
+
 i'm using rspec for testing with Faker to create dummy data and FactoryBot 
-use `./bin/rspec` to run specs 
-some of tests are integration tests `requests` i used webmock in it to mock the response of time website 
+use ./bin/rspec to run specs 
+some of tests are integration tests requests i used webmock in it to mock the response of time website 
 
 ### Implementaion notes and details 
 //todo 
